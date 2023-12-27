@@ -1,5 +1,4 @@
 const fs = require('node:fs')
-const packageJson = require('package.json')
 
 exports.preTagGeneration = (tag) => {
   const packageJson = require('./package.json')
