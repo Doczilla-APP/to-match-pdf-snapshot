@@ -4,8 +4,7 @@
 import * as Canvas from 'canvas'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-// @ts-expect-error
-import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf'
 
 const PDFJS_DIR = dirname(require.resolve('pdfjs-dist'))
 const C_MAP_URL = join(PDFJS_DIR, '../cmaps/')
@@ -18,7 +17,7 @@ export async function pdfToPng(
 ): Promise<Buffer[]> {
   // Load PDF
   const data = new Uint8Array(Buffer.isBuffer(pdf) ? pdf : readFileSync(pdf))
-  const loadingTask = pdfjsLib.getDocument({
+  const loadingTask = getDocument({
     data,
     cMapUrl: C_MAP_URL,
     cMapPacked: true,

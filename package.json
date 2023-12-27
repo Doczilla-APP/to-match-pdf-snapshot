@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "Doczilla API wrapper",
   "keywords": [
-    "jest",
     "playwright",
-    "pdf-snapshot"
+    "pdf-snapshot",
+    "pdf visual regression testing",
+    "pdf compare",
+    "pdf comparison"
   ],
   "homepage": "https://github.com/doczilla-app/to-match-pdf-snapshot",
   "bugs": {
@@ -37,7 +39,7 @@
   "dependencies": {
     "node-addon-api": "^7.0.0",
     "node-gyp": "^10.0.1",
-    "pdfjs-dist": "^4.0.269"
+    "pdfjs-dist": "3.11.174"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

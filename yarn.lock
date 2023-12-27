@@ -4434,9 +4434,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pdfjs-dist@npm:^4.0.269":
-  version: 4.0.269
-  resolution: "pdfjs-dist@npm:4.0.269"
+"pdfjs-dist@npm:3.11.174":
+  version: 3.11.174
+  resolution: "pdfjs-dist@npm:3.11.174"
   dependencies:
     canvas: "npm:^2.11.2"
     path2d-polyfill: "npm:^2.0.1"
@@ -4445,7 +4445,7 @@ __metadata:
       optional: true
     path2d-polyfill:
       optional: true
-  checksum: 75972e736e69ca54f125e36eea7f6cbafbd7d0e47dc5e4516550527a807f7d265c27f64362b56f285f11299c03f1907c02bd52d0992f0bec105a7da443ff1514
+  checksum: 0cb26561fd9bea90f2c1c8029d4cf972d338838de0f7f7aa3f369b2e555b99a2d8bbf1b81cc682fb26331241201a432726ae356a7ad3a930d86a308ca941d29c
   languageName: node
   linkType: hard
 
@@ -5141,7 +5141,7 @@ __metadata:
     jest: "npm:^29.7.0"
     node-addon-api: "npm:^7.0.0"
     node-gyp: "npm:^10.0.1"
-    pdfjs-dist: "npm:^4.0.269"
+    pdfjs-dist: "npm:3.11.174"
     playwright-core: "npm:^1.40.1"
     ts-jest: "npm:^29.1.1"
     typescript: "npm:^5.3"
