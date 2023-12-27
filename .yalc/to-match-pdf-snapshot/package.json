@@ -1,0 +1,42 @@
+{
+  "name": "to-match-pdf-snapshot",
+  "version": "1.0.7",
+  "description": "Doczilla API wrapper",
+  "keywords": [
+    "jest",
+    "playwright",
+    "pdf-snapshot"
+  ],
+  "homepage": "https://github.com/doczilla-app/to-match-pdf-snapshot",
+  "bugs": {
+    "url": "https://github.com/doczilla-app/to-match-pdf-snapshot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doczilla-app/to-match-pdf-snapshot.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Doczilla",
+    "email": "hello@doczilla.app",
+    "url": "https://www.doczilla.app"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .ts .",
+    "test": "jest"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    },
+    "./playwright": {
+      "default": "./dist/playwright.js"
+    }
+  },
+  "packageManager": "yarn@4.0.2",
+  "engines": {
+    "node": ">=18.*"
+  },
+  "yalcSig": "79d7ab828b9f9cab37b9d0226ce25628"
+}
