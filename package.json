@@ -32,7 +32,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ext .ts .",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "node-addon-api": "^7.0.0",
