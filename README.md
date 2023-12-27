@@ -1,6 +1,6 @@
 # toMatchPdfSnapshot
 
-Library for testing visual regression of PDFs in Playwright. The library utilizes pdf.js to convert PDF files to PNG format.
+Test visual regression of PDFs in Playwright. The library utilizes pdf.js to convert PDF files to PNG format.
 
 ## Installation
 
