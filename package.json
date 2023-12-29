@@ -1,7 +1,7 @@
 {
   "name": "to-match-pdf-snapshot",
   "version": "0.0.1",
-  "description": "Doczilla API wrapper",
+  "description": "Test visual regression of PDFs in Playwright.",
   "keywords": [
     "playwright",
     "pdf-snapshot",
