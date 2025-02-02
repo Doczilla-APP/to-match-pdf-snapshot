@@ -1,7 +1,6 @@
 /**
  * https://github.com/mozilla/pdf.js/blob/3b94e9fdce616a9b4899800559cbca15169acca6/examples/node/pdf2png/pdf2png.mjs
  */
-import * as Canvas from 'canvas'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { getDocument } from 'pdfjs-dist'
@@ -33,10 +32,11 @@ export async function pdfToPng(
     const pdfPage = await pdfDocument.getPage(page)
 
     const viewport = pdfPage.getViewport({ scale: 1.0 })
-    const canvasAndContext = Canvas.createCanvas(viewport.width, viewport.height)
+    // @ts-expect-error unknown method on Object
+    const canvasAndContext = pdfDocument.canvasFactory.create(viewport.width, viewport.height)
 
     await pdfPage.render({
-      canvasContext: canvasAndContext.getContext('2d') as never,
+      canvasContext: canvasAndContext.context,
       viewport
     }).promise
 
