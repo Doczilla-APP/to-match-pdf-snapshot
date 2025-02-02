@@ -3,13 +3,13 @@
  */
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 
 const PDFJS_DIR = join(dirname(require.resolve('pdfjs-dist')), '..')
 
 export async function pdfToPng(
   pdf: string | Buffer
 ): Promise<Buffer[]> {
+  const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs')
 
   // Load PDF
   const data = new Uint8Array(Buffer.isBuffer(pdf) ? pdf : readFileSync(pdf))
