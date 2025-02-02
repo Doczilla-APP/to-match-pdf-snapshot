@@ -1,27 +1,25 @@
 /**
  * https://github.com/mozilla/pdf.js/blob/3b94e9fdce616a9b4899800559cbca15169acca6/examples/node/pdf2png/pdf2png.mjs
  */
-import * as Canvas from 'canvas'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { getDocument } from 'pdfjs-dist'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 
-const PDFJS_DIR = dirname(require.resolve('pdfjs-dist'))
-const C_MAP_URL = join(PDFJS_DIR, '../cmaps/')
-
-// Where the standard fonts are located.
-const STANDARD_FONT_DATA_URL = join(PDFJS_DIR, '../standard_fonts/')
+const PDFJS_DIR = join(dirname(require.resolve('pdfjs-dist')), '..')
 
 export async function pdfToPng(
   pdf: string | Buffer
 ): Promise<Buffer[]> {
+
   // Load PDF
   const data = new Uint8Array(Buffer.isBuffer(pdf) ? pdf : readFileSync(pdf))
   const loadingTask = getDocument({
     data,
-    cMapUrl: C_MAP_URL,
-    cMapPacked: true,
-    standardFontDataUrl: STANDARD_FONT_DATA_URL
+    // Where the standard fonts are located.
+    standardFontDataUrl: join(PDFJS_DIR, 'standard_fonts/'),
+    // Some PDFs need external cmaps.
+    cMapUrl: join(PDFJS_DIR, 'cmaps/'),
+    cMapPacked: true
   })
 
   const pdfDocument = await loadingTask.promise
@@ -31,18 +29,19 @@ export async function pdfToPng(
   const images: Buffer[] = []
   for (let page = 1; page <= numPages; page += 1) {
     const pdfPage = await pdfDocument.getPage(page)
+    const canvasFactory = pdfDocument.canvasFactory
 
     const viewport = pdfPage.getViewport({ scale: 1.0 })
-    const canvasAndContext = Canvas.createCanvas(viewport.width, viewport.height)
+    // @ts-expect-error unknown method on Object
+    const canvasAndContext = canvasFactory.create(viewport.width, viewport.height)
 
     await pdfPage.render({
-      canvasContext: canvasAndContext.getContext('2d') as never,
+      canvasContext: canvasAndContext.context,
       viewport
     }).promise
 
+    images.push(canvasAndContext.canvas.toBuffer('image/png'))
     pdfPage.cleanup()
-
-    images.push(canvasAndContext.toBuffer('image/png'))
   }
 
   return images
