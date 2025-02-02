@@ -4,7 +4,7 @@
 import * as Canvas from 'canvas'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { getDocument } from 'pdfjs-dist/legacy/build/pdf'
+import { getDocument } from 'pdfjs-dist'
 
 const PDFJS_DIR = dirname(require.resolve('pdfjs-dist'))
 const C_MAP_URL = join(PDFJS_DIR, '../cmaps/')

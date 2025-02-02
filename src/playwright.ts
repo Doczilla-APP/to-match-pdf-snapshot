@@ -73,6 +73,7 @@ expect.extend({
     if (!sameFileSize(pdfFile, testInfo.snapshotPath(pdfSnapshotName), testInfo.config.updateSnapshots)) {
       return {
         pass: false,
+        expected: pdfFile.length,
         name: 'toMatchPdfSnapshot',
         message: () => 'Does not match with snapshot, size is different.'
       }
