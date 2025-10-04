@@ -28,6 +28,8 @@ type ToMatchSnapShotOptions = {
    * `TestConfig.expect`. Defaults to `0.2`.
    */
   threshold?: number
+
+  maxSizeDiffRatio?: number
 }
 
 declare global {
@@ -70,7 +72,7 @@ expect.extend({
       ? fullTitleWithoutSpec
       : `${sanitizeForFilePath(trimLongString(fullTitleWithoutSpec))}.pdf`
 
-    if (!sameFileSize(pdfFile, testInfo.snapshotPath(pdfSnapshotName), testInfo.config.updateSnapshots)) {
+    if (!sameFileSize(pdfFile, testInfo.snapshotPath(pdfSnapshotName), testInfo.config.updateSnapshots, options?.maxSizeDiffRatio)) {
       return {
         pass: false,
         expected: pdfFile.length,
