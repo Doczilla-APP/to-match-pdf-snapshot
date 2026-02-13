@@ -29,13 +29,13 @@ export async function pdfToPng(
   const images: Buffer[] = []
   for (let page = 1; page <= numPages; page += 1) {
     const pdfPage = await pdfDocument.getPage(page)
-    const canvasFactory = pdfDocument.canvasFactory
 
     const viewport = pdfPage.getViewport({ scale: 1.0 })
     // @ts-expect-error unknown method on Object
-    const canvasAndContext = canvasFactory.create(viewport.width, viewport.height)
+    const canvasAndContext = pdfDocument.canvasFactory.create(viewport.width, viewport.height)
 
     await pdfPage.render({
+      canvas: canvasAndContext.canvas as unknown as HTMLCanvasElement,
       canvasContext: canvasAndContext.context,
       viewport
     }).promise
