@@ -25,12 +25,12 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
 
       - name: yarn install
         if: steps.cache.outputs.cache-hit != 'true'
         shell: bash
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Build
         shell: bash
@@ -38,14 +38,14 @@ jobs:
 
   test:
     name: Test (${{ matrix.node }})
-    needs: [build]
+    needs: [ build ]
     strategy:
       matrix:
         os:
           - "ubuntu-latest"
         node:
+          - "24"
           - "20"
-          - "18"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
